@@ -1,6 +1,15 @@
+body {
+    background-color: rgb(56, 74, 134);
+    font-size: 2em;
+}
+
 main {
     text-align: center;
     margin: 0 auto;
+}
+
+h1 {
+    color: rgba(255, 255, 255, 0.95);
 }
 
 #time {
@@ -19,4 +28,12 @@ main {
 .settings-line {
     display: flex;
     justify-content: center;
+}
+
+#settings {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+#time {
+    color: rgba(255, 255, 255, 0.95);
 }
