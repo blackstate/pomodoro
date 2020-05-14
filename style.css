@@ -1,0 +1,22 @@
+main {
+    text-align: center;
+    margin: 0 auto;
+}
+
+#time {
+    display: flex;
+    justify-content: center;
+}
+
+#timer-box {
+    margin-top: 50px;
+}
+
+.start-button {
+    margin-top: 10px;
+}
+
+.settings-line {
+    display: flex;
+    justify-content: center;
+}

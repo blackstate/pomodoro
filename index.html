@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pomodoro Timer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <main>
+            <h1>Tomato Timer</h1>
+
+            <div id="settings">
+                
+                <div class="settings-line">Focus Duration: <div id="focusMin">2</div>
+                    <button id="focusUp"><img src="assets/up.svg"></button>
+                    <button id="focusDown"><img src="assets/down.svg"></button>
+                </div>
+
+                <div class="settings-line"> Short Break: <div id="shortMin">5</div>
+                    <button id="shortUp"><img src="assets/up.svg"></button>
+                    <button id="shortDown"><img src="assets/down.svg"></button>
+                </div>
+
+                <div class="settings-line">Long Break: <div id="LongMin">15</div>
+                    <button id="shortUp"><img src="assets/up.svg"></button>
+                    <button id="shortDown"><img src="assets/down.svg"></button>   
+                </div>
+            
+            </div>
+
+            <div id="timer-box">
+
+                <div id="current">Current</div>
+                <div id="time">
+                    <div id="minutes">2</div><div>:</div><div id="seconds">00</div>
+                </div>
+
+            </div>
+            
+            <div>
+                <button class="start-button">Start</button>
+            </div>
+        </main>
+    </body>
+    <script src="script.js"></script>
+</html>
