@@ -3,4 +3,4 @@
 A simple pomodoro timer with notification functionality.
 
 ## Screenshot
-<img src="assets/screenshot.png"s>
+<img src="/assets/screenshot.PNG">
