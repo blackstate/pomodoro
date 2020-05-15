@@ -35,14 +35,13 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// pause function
 function changeA() {
     a = "stop";
     running = false;
 }
-pauseButton.addEventListener("click", () => {
-    changeA();
-})
 
+// starts the timer
 async function startTime() {
     let minVal = +min.innerHTML;
     let secVal = +sec.innerHTML;
@@ -77,21 +76,20 @@ async function startTime() {
             else {
                 sec.innerHTML = i;
             }
-            document.title = `${k}:${i} Time to focus!`
-            await sleep(0.2);
+            await sleep(0.001);
         } 
     }
     running = false;
 
-
     endTime();
+    
 }
 
+// handles notifications and automatic selecting of the next state
 function endTime() {
-    alert("done");
-
     
     if (current == "pomodoro") {
+        notifyMe("pom");
         removeSelect();
         sessions += 1;
         if (sessions % 4 == 0 && sessions != 0) {
@@ -100,21 +98,22 @@ function endTime() {
             return;
         }   
         current = "short";
-        selectState(shortState, focusDurationVal);    
+        selectState(shortState, shortDurationVal);    
     }
 
     else if (current == "short") {
+        notifyMe("short");
         removeSelect();
         selectState(focusState, focusDurationVal);
         current = "pomodoro";
     }
 
     else {
+        notifyMe("long");
         removeSelect();
         selectState(focusState, focusDurationVal);
         current = "pomodoro";
     }
-    
     
 }
 // updates the innerHTML
@@ -158,6 +157,7 @@ function selectState(state, val) {
     min.innerHTML = val;
 }
 
+// changes the variable of the changed value
 function changeMin (command, time) {
     let t;
     if (time == "focus")
@@ -218,24 +218,79 @@ longDown.addEventListener("click", () => {
 // state event listeners to change state
 focusState.addEventListener('click', () => {
     removeSelect();
+    current="pomodoro";
     selectState(focusState, focusDurationVal);
     changeA();
     sec.innerHTML = "00";
 })
 longState.addEventListener('click', () => {
     removeSelect();
+    current="long";
     selectState(longState, longDurationVal);
     changeA();
     sec.innerHTML = "00";
 })
 shortState.addEventListener('click', () => {
     removeSelect();
+    current="short";
     selectState(shortState, shortDurationVal);
     changeA();
     sec.innerHTML = "00";
 })
 
-// starts time
+// notification function
+function notifyMe(state) {
+    // Let's check if the browser supports notifications
+    if (!("Notification" in window)) {
+      alert("This browser does not support desktop notification");
+    }
+  
+    // Let's check whether notification permissions have already been granted
+    else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+      
+      if (state == "pom") {
+        var notification = new Notification("Pomodoro Timer", {
+            body: `Great job focusing!\nClick me to start your break`,
+            icon: "assets/icon.png",
+            image: "assets/thumbs.jpg"
+          })
+      }
+      else if (state == "short") {
+        var notification = new Notification("Pomodoro Timer", {
+            body: "Short break done!\nClick me to start focusing",
+            icon: "assets/icon.png",
+            image: "assets/short.jpg"
+          })
+      }
+      else{
+        var notification = new Notification("Pomodoro Timer", {
+            body: "Long break done!\nClick me to start focusing",
+            icon: "assets/icon.png",
+            image: "assets/long.jpg"
+          })
+      }
+      notification.onclick = function(event) {
+        startTime();
+      }
+    }
+  
+    // Otherwise, we need to ask the user for permission
+    else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(function (permission) {
+        // If the user accepts, let's create a notification
+        if (permission === "granted") {
+          var notification = new Notification("Notification turned on");
+        }
+      });
+    }
+  
+    // At last, if the user has denied notifications, and you 
+    // want to be respectful there is no need to bother them any more.
+  }
+
+// starts timer
 startButton.addEventListener("click", startTime);
 
-
+// pause timer
+pauseButton.addEventListener("click", changeA);

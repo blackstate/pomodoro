@@ -10,30 +10,32 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="assets/icon.png" type="image/icon type">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+
     </head>
     <body>
         <main>
-            <h1>Tomato Timer</h1>
+            <h1>Tomato Timer!</h1>
 
-            <div id="settings">
-                
-                <div class="settings-line">Focus Duration: <div id="focusMin">2</div>
-                    <button id="focusUp"><img src="assets/up.svg"></button>
-                    <button id="focusDown"><img src="assets/down.svg"></button>
+            <div class="settings-box">
+                <div class="settings-line">Focus Duration: 
+                    <div class="settings-time" id="focusMin">25</div>
+                    <button class="adjust-button" id="focusUp"><img class="arrow-image" src="assets/up.svg"></button>
+                    <button class="adjust-button" id="focusDown"><img class="arrow-image" src="assets/down.svg"></button>
                 </div>
 
-                <div class="settings-line"> Short Break: <div id="shortMin">5</div>
-                    <button id="shortUp"><img src="assets/up.svg"></button>
-                    <button id="shortDown"><img src="assets/down.svg"></button>
+                <div class="settings-line"> Short Break: <div class="settings-time" id="shortMin">5</div>
+                    <button class="adjust-button" id="shortUp"><img class="arrow-image" src="assets/up.svg"></button>
+                    <button class="adjust-button" id="shortDown"><img class="arrow-image" src="assets/down.svg"></button>
                 </div>
 
-                <div class="settings-line">Long Break: <div id="longMin">15</div>
-                    <button id="longUp"><img src="assets/up.svg"></button>
-                    <button id="longDown"><img src="assets/down.svg"></button>   
+                <div class="settings-line">Long Break: <div class="settings-time" id="longMin">15</div>
+                    <button class="adjust-button" id="longUp"><img class="arrow-image" src="assets/up.svg"></button>
+                    <button class="adjust-button" id="longDown"><img class="arrow-image" src="assets/down.svg"></button>   
                 </div>
-            
             </div>
-
+            
             <div id="timer-box">
                 <div class="state-box">
                     <div class="state selected" id="pomState">Pomodoro</div>
@@ -42,15 +44,19 @@
                 </div>
 
                 <div id="time">
-                    <div id="minutes">2</div><div>:</div><div id="seconds">00</div>
+                    <div id="minutes">25</div><div>:</div><div id="seconds">00</div>
                 </div>
- 
+                
+                <div>
+                    <button class="start-button start-pause">START</button>
+                    <button class="pause-button start-pause">PAUSE</button>
+                </div> 
+
             </div>
+
             
-            <div>
-                <button class="start-button">Start</button>
-                <button class="pause-button">Pause</button>
-            </div>
+            
+       
         </main>
     </body>
     <script src="script.js"></script>

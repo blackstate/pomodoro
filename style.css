@@ -1,6 +1,7 @@
 body {
-    background-color: rgb(56, 74, 134);
+    background-color: #f05b56;
     color: rgba(255, 255, 255, 0.95);
+    font-family: 'Baloo 2', Arial, Helvetica, sans-serif;
 }
 
 main {
@@ -14,40 +15,122 @@ main {
 
 h1 {
     font-size: 3em;
+    margin-bottom: 15px;
 }
 
+h3 {
+    margin: 0;
+    margin-top: 15px;
+}
+
+hr {
+    margin-top: 3px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 #time {
     display: flex;
     justify-content: center;
+    font-size: 180px;
 }
 
 #timer-box {
-    margin-top: 50px;
+    margin-top: 20px;
+    background-color: #f26c67;
+    width: 600px;
+    height: auto;
+    padding-bottom: 15px;
+    border-radius: 20px;
 }
 
-.start-button {
+.start-pause {
     margin-top: 10px;
+    font-family: Arial;
+    font-size: 26px;
+    height: 55px;
+    color: rgb(240, 91, 86);
+    width: 170px;
+    background-color: white;
+    border-style: none;
+    margin: 20px 20px 0px;
+    padding: 0px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: 0;
 }
 
 .settings-line {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    
 }
 
+.settings-time {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.adjust-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: 0;
+    padding: 0;
+}
+.time-label {
+    text-align: left;
+    margin-left: 21px;
+    
+}
+.arrow-image {
+    height: 24px;
+    width: 24px;
+}
 #settings {
+    margin: 0 auto;
+    margin-top: 10%;
     font-size: 20px;
+    font-weight: 700;
+    color:#1f1f1f;
+    width: 20%;
+    min-height: 180px;
+    background-color: #fff;
+    padding: 10px 0px 40px 0px;
 }
 
 .state-box {
     display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 12px;
 }
 
+.time-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-right: 20px;
+}
 .state {
-    padding: 7px;
+    margin: 30px;
+    padding: 10px;
     cursor: pointer;
+    font-size: 1.8em;
+}
+.hidden {
+    font-weight: 200;
+    opacity: 30%;
+
+}
+.selected {
+    background-color: #ce5c58;
+    border-radius: 16px;
+    width: auto;
+    height: auto;
 }
 
-.selected {
-    color: red;
+.settings-box {
+    /* to do */
+    color: white;
+    font-size: 18px;
 }
