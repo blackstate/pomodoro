@@ -1,6 +1,7 @@
 let time = document.querySelector("#time");
 let min = document.querySelector("#minutes");
 let sec = document.querySelector("#seconds");
+
 let startButton = document.querySelector(".start-button");
 let pauseButton = document.querySelector(".pause-button");
 
@@ -20,7 +21,7 @@ let focusDurationVal = +focusDuration.innerHTML;
 let shortDurationVal = +shortDuration.innerHTML;
 let longDurationVal = +longDuration.innerHTML;
 
-let pomState = document.querySelector('div#pomState');
+let focusState = document.querySelector('div#pomState');
 let shortState = document.querySelector('div#shortState');
 let longState = document.querySelector('div#longState');
 
@@ -68,6 +69,22 @@ async function startTime() {
 // updates the innerHTML
 function changeTime(element, val) {
     element.innerHTML = val;
+
+    if (element == focusDuration) {
+        if (focusState.classList.contains("selected")) {
+            min.innerHTML = val;
+        }
+    }
+    else if (element == shortDuration) {
+        if (shortState.classList.contains("selected")) {
+            min.innerHTML = val;
+        }
+    }
+    else  {
+        if (longState.classList.contains("selected")) {
+            min.innerHTML = val;
+        }
+    }
 }
 
 // removes the selected class from the state box
@@ -77,8 +94,9 @@ function removeSelect() {
 }
 
 // adds a class to the selected state
-function selectState(state) {
+function selectState(state, val) {
     state.classList.add('selected');
+    min.innerHTML = val;
 }
 
 function changeMin (command, time) {
@@ -111,6 +129,7 @@ function changeMin (command, time) {
         longDurationVal = t;
 }
 
+// click event listeners for changing the time
 focusUp.addEventListener("click", () => {
     changeMin(true, "focus");
     changeTime(focusDuration, focusDurationVal);
@@ -137,21 +156,21 @@ longDown.addEventListener("click", () => {
     changeTime(longDuration, longDurationVal);
 })
 
-
-pomState.addEventListener('click', () => {
+// state event listeners to change state
+focusState.addEventListener('click', () => {
     removeSelect();
-    selectState(pomState);
+    selectState(focusState, focusDurationVal);
 })
 longState.addEventListener('click', () => {
     removeSelect();
-    selectState(longState);
+    selectState(longState, longDurationVal);
 })
 shortState.addEventListener('click', () => {
     removeSelect();
-    selectState(shortState);
+    selectState(shortState, shortDurationVal);
 })
 
+// starts time
 startButton.addEventListener("click", startTime);
-
 
 
