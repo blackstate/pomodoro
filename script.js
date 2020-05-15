@@ -20,15 +20,16 @@ let focusDurationVal = +focusDuration.innerHTML;
 let shortDurationVal = +shortDuration.innerHTML;
 let longDurationVal = +longDuration.innerHTML;
 
-let pomState = document.querySelector('#pomState');
-let shortState = document.querySelector('#pomState');
-let longState = document.querySelector('#pomState');
+let pomState = document.querySelector('div#pomState');
+let shortState = document.querySelector('div#shortState');
+let longState = document.querySelector('div#longState');
 
 let minVal = +min.innerHTML;
 let secVal = +sec.innerHTML;
 
 let running = false;
 
+// sleep function
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -64,96 +65,93 @@ async function startTime() {
     running = false;
 }
 
+// updates the innerHTML
 function changeTime(element, val) {
     element.innerHTML = val;
 }
 
-function focusChange(command) {
-    if (command == true) {
-        if (focusDurationVal == 60) {
-            return;
-        }
-        focusDurationVal += 1;
-    }
-
-    else {
-        if(focusDurationVal == 1) {
-            return;
-        }
-        focusDurationVal -= 1;
-    }
-    console.log(focusDurationVal);
+// removes the selected class from the state box
+function removeSelect() {
+    let stateSelect = document.querySelector('.state.selected');
+    stateSelect.classList.remove('selected');
 }
-function shortChange(command) {
-    if (command == true) {
-        if (shortDurationVal == 60) {
-            return;
-        }
-        shortDurationVal += 1;
-    }
 
-    else {
-        if(shortDurationVal == 1) {
-            return;
-        }
-        shortDurationVal -= 1;
-    }
-    console.log(shortDurationVal);
+// adds a class to the selected state
+function selectState(state) {
+    state.classList.add('selected');
 }
-function longChange(command) {
+
+function changeMin (command, time) {
+    let t;
+    if (time == "focus")
+        t = focusDurationVal;
+    else if (time == "short")
+        t = shortDurationVal;
+    else
+        t = longDurationVal;
+
     if (command == true) {
-        if (longDurationVal == 60) {
+        if (t == 60) {
             return;
         }
-        longDurationVal += 1;
+        t += 1;
+    }
+    else {
+        if(t == 1) {
+            return;
+        }
+        t -= 1;
     }
 
-    else {
-        if(longDurationVal == 1) {
-            return;
-        }
-        longDurationVal -= 1;
-    }
-    console.log(longDurationVal);
+    if (time == "focus")
+        focusDurationVal = t;
+    else if (time == "short")
+        shortDurationVal = t;
+    else
+        longDurationVal = t;
 }
 
 focusUp.addEventListener("click", () => {
-    focusChange(true);
+    changeMin(true, "focus");
     changeTime(focusDuration, focusDurationVal);
 })
-
 focusDown.addEventListener("click", () => {
-    focusChange(false);
+    changeMin(false, "focus");
     changeTime(focusDuration, focusDurationVal);
 })
-
 shortUp.addEventListener("click", () => {
-    shortChange(true);
+    changeMin(true, "short");
     changeTime(shortDuration, shortDurationVal);
 })
-
 shortDown.addEventListener("click", () => {
-    shortChange(false);
+    changeMin(false, "short");
     changeTime(shortDuration, shortDurationVal);
 })
-
 longUp.addEventListener("click", () => {
-    longChange(true);
+    changeMin(true, "long");
     changeTime(longDuration, longDurationVal);
 
 })
-
 longDown.addEventListener("click", () => {
-    longChange(false);
+    changeMin(false, "long");
     changeTime(longDuration, longDurationVal);
+})
+
+
+pomState.addEventListener('click', () => {
+    removeSelect();
+    selectState(pomState);
+})
+longState.addEventListener('click', () => {
+    removeSelect();
+    selectState(longState);
+})
+shortState.addEventListener('click', () => {
+    removeSelect();
+    selectState(shortState);
 })
 
 startButton.addEventListener("click", startTime);
-
-
-
-
-
 
 
 
