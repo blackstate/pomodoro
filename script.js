@@ -25,27 +25,38 @@ let focusState = document.querySelector('div#pomState');
 let shortState = document.querySelector('div#shortState');
 let longState = document.querySelector('div#longState');
 
-let minVal = +min.innerHTML;
-let secVal = +sec.innerHTML;
-
+let a;
 let running = false;
+let sessions = 0;
 
 // sleep function
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function changeA() {
+    a = "stop";
+    running = false;
+}
+pauseButton.addEventListener("click", () => {
+    changeA();
+})
+
 async function startTime() {
+    let minVal = +min.innerHTML;
+    let secVal = +sec.innerHTML;
 
     if (running == true) {
         return;
     }
 
     running = true;
-
+    
     for (k = minVal - 1; k >= 0; k--) {
 
-        min.innerHTML = k;
+        if (a != "cont" && running)
+            min.innerHTML = k;
+        
         if (secVal == 0) {
             minVal -= 1;
             secVal = 59;
@@ -53,9 +64,15 @@ async function startTime() {
         
         for (i = secVal; i >= 0; i--) {
 
+            if (a == "stop" && !running) {
+                a = "cont";
+                running = false;
+                return;
+            }
             if (i >= 0 && i < 10) {
                 sec.innerHTML = "0" + i;
             }
+            
             else {
                 sec.innerHTML = i;
             }
@@ -64,6 +81,7 @@ async function startTime() {
         } 
     }
     running = false;
+    sessions += 1;
 }
 
 // updates the innerHTML
@@ -85,6 +103,8 @@ function changeTime(element, val) {
             min.innerHTML = val;
         }
     }
+    changeA();
+    sec.innerHTML = "00";
 }
 
 // removes the selected class from the state box
@@ -160,14 +180,20 @@ longDown.addEventListener("click", () => {
 focusState.addEventListener('click', () => {
     removeSelect();
     selectState(focusState, focusDurationVal);
+    changeA();
+    sec.innerHTML = "00";
 })
 longState.addEventListener('click', () => {
     removeSelect();
     selectState(longState, longDurationVal);
+    changeA();
+    sec.innerHTML = "00";
 })
 shortState.addEventListener('click', () => {
     removeSelect();
     selectState(shortState, shortDurationVal);
+    changeA();
+    sec.innerHTML = "00";
 })
 
 // starts time
