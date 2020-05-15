@@ -28,6 +28,7 @@ let longState = document.querySelector('div#longState');
 let a;
 let running = false;
 let sessions = 0;
+let current = "pomodoro";
 
 // sleep function
 function sleep(ms) {
@@ -77,13 +78,45 @@ async function startTime() {
                 sec.innerHTML = i;
             }
             document.title = `${k}:${i} Time to focus!`
-            await sleep(1000);
+            await sleep(0.2);
         } 
     }
     running = false;
-    sessions += 1;
+
+
+    endTime();
 }
 
+function endTime() {
+    alert("done");
+
+    
+    if (current == "pomodoro") {
+        removeSelect();
+        sessions += 1;
+        if (sessions % 4 == 0 && sessions != 0) {
+            current = "long"
+            selectState(longState, longDurationVal);
+            return;
+        }   
+        current = "short";
+        selectState(shortState, focusDurationVal);    
+    }
+
+    else if (current == "short") {
+        removeSelect();
+        selectState(focusState, focusDurationVal);
+        current = "pomodoro";
+    }
+
+    else {
+        removeSelect();
+        selectState(focusState, focusDurationVal);
+        current = "pomodoro";
+    }
+    
+    
+}
 // updates the innerHTML
 function changeTime(element, val) {
     element.innerHTML = val;
@@ -91,20 +124,26 @@ function changeTime(element, val) {
     if (element == focusDuration) {
         if (focusState.classList.contains("selected")) {
             min.innerHTML = val;
+            changeA();
+            sec.innerHTML = "00";
         }
     }
     else if (element == shortDuration) {
         if (shortState.classList.contains("selected")) {
             min.innerHTML = val;
+            changeA();
+            sec.innerHTML = "00";
         }
     }
     else  {
         if (longState.classList.contains("selected")) {
             min.innerHTML = val;
+            changeA();
+            sec.innerHTML = "00";
         }
     }
-    changeA();
-    sec.innerHTML = "00";
+
+    
 }
 
 // removes the selected class from the state box
