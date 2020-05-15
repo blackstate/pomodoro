@@ -1,15 +1,19 @@
 body {
     background-color: rgb(56, 74, 134);
-    font-size: 2em;
+    color: rgba(255, 255, 255, 0.95);
 }
 
 main {
     text-align: center;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
-    color: rgba(255, 255, 255, 0.95);
+    font-size: 3em;
 }
 
 #time {
@@ -31,9 +35,23 @@ h1 {
 }
 
 #settings {
-    color: rgba(255, 255, 255, 0.95);
+    font-size: 20px;
 }
 
 #time {
-    color: rgba(255, 255, 255, 0.95);
+    
+}
+
+.state-box {
+    display: flex;
+    font-size: 12px;
+}
+
+.state {
+    padding: 7px;
+    cursor: pointer;
+}
+
+.selected {
+    color: red;
 }

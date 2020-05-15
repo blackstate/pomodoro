@@ -20,8 +20,13 @@ let focusDurationVal = +focusDuration.innerHTML;
 let shortDurationVal = +shortDuration.innerHTML;
 let longDurationVal = +longDuration.innerHTML;
 
+let pomState = document.querySelector('#pomState');
+let shortState = document.querySelector('#pomState');
+let longState = document.querySelector('#pomState');
+
 let minVal = +min.innerHTML;
 let secVal = +sec.innerHTML;
+
 let running = false;
 
 function sleep(ms) {
@@ -79,7 +84,6 @@ function focusChange(command) {
     }
     console.log(focusDurationVal);
 }
-
 function shortChange(command) {
     if (command == true) {
         if (shortDurationVal == 60) {
