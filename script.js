@@ -76,7 +76,7 @@ async function startTime() {
             else {
                 sec.innerHTML = i;
             }
-            await sleep(0.001);
+            await sleep(1000);
         } 
     }
     running = false;
